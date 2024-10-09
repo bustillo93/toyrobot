@@ -17,13 +17,19 @@ include_directories(
     ${APP_ROOT_DIRECTORY}/src
 )
 
+include(FetchContent)
+FetchContent_Declare(
+    Catch2
+    GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+    GIT_TAG v3.4.0
+)
+FetchContent_MakeAvailable(Catch2)
+
 add_executable(${PROJECT_NAME}
     ${MODULE_SRCS}
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     app
-    cmd
-    map
-    Catch2WithMain
+    Catch2::Catch2WithMain
 )

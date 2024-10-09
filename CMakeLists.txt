@@ -21,8 +21,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     app
-    cmd
-    map
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE
@@ -30,8 +28,6 @@ target_compile_options(${PROJECT_NAME} PRIVATE
 )
 
 add_subdirectory(src/app/)
-add_subdirectory(src/lib/)
-add_subdirectory(src/map/)
 
 add_subdirectory(tests/integration-tests/)
 add_subdirectory(tests/unit-tests/)

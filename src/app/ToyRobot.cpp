@@ -43,14 +43,14 @@ void ToyRobot::Act(const Action& action)
     }
     else
     {
-        std::cout << __PRETTY_FUNCTION__ << "Should not happen!\n";
+        std::cout << __PRETTY_FUNCTION__ << "Invalid action not acceptable!\n";
     }
 }
 
 void ToyRobot::Place(const Action::Place& placeCmd)
 {
     /// check if newPose is within range of map
-    if (m_map->IsWithinRange(map::IMap::Point(placeCmd.pos.GetX(), placeCmd.pos.GetY())))
+    if (m_map->IsWithinRange(Point(placeCmd.pos.GetX(), placeCmd.pos.GetY())))
     {
         m_currentPose.SetX(placeCmd.pos.GetX());
         m_currentPose.SetY(placeCmd.pos.GetY());
@@ -67,7 +67,7 @@ void ToyRobot::Move()
 
     auto newPose {m_currentPose.MoveFoward()};
 
-    if (m_map->IsWithinRange(map::IMap::Point(newPose.GetX(), newPose.GetY())))
+    if (m_map->IsWithinRange(Point(newPose.GetX(), newPose.GetY())))
     {
         m_currentPose = newPose;
     }

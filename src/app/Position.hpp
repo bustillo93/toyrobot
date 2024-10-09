@@ -4,7 +4,7 @@
 #include <ostream>
 #include <string>
 
-namespace lib::localisation
+namespace localisation
 {
     enum class Direction
     {
@@ -46,7 +46,7 @@ namespace lib::localisation
         Direction m_direction{Direction::INVALID};
     };
 
-} // namespace lib::localisation
+} // namespace localisation
 
-std::ostream& operator<<(std::ostream&, const lib::localisation::Direction&);
-std::ostream& operator<<(std::ostream&, const lib::localisation::Position&);
+std::ostream& operator<<(std::ostream&, const localisation::Direction&);
+std::ostream& operator<<(std::ostream&, const localisation::Position&);

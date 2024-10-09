@@ -1,12 +1,12 @@
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 #include "app/Application.hpp"
-#include "lib/Position.hpp"
+#include "app/Position.hpp"
 
 SCENARIO( "toy robot act on commands and report position", "[commands]" )
 {
-    using Position = lib::localisation::Position;
-    using Direction = lib::localisation::Direction;
+    using Position = localisation::Position;
+    using Direction = localisation::Direction;
 
     GIVEN ("Toy robot in a table")
     {
@@ -29,7 +29,7 @@ SCENARIO( "toy robot act on commands and report position", "[commands]" )
                 };
                 app.Run(cmds, callback);
 
-                REQUIRE(actualPosition == lib::localisation::Position(3, 1, Direction::EAST).ToString());
+                REQUIRE(actualPosition == localisation::Position(3, 1, Direction::EAST).ToString());
             }
             THEN ("RIGHT")
             {
@@ -46,7 +46,7 @@ SCENARIO( "toy robot act on commands and report position", "[commands]" )
                 };
                 app.Run(cmds, callback);
 
-                REQUIRE(actualPosition == lib::localisation::Position(2, 1, Direction::SOUTH).ToString());
+                REQUIRE(actualPosition == localisation::Position(2, 1, Direction::SOUTH).ToString());
             }
         }
         WHEN ("PLACE heading NORTH")
@@ -69,7 +69,7 @@ SCENARIO( "toy robot act on commands and report position", "[commands]" )
                 };
                 app.Run(cmds, callback);
 
-                REQUIRE(actualPosition == lib::localisation::Position(0, 4, Direction::WEST).ToString());
+                REQUIRE(actualPosition == localisation::Position(0, 4, Direction::WEST).ToString());
             }
         }
     }

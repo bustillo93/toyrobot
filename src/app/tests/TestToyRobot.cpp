@@ -1,5 +1,5 @@
 #include "app/ToyRobot.hpp"
-#include "map/mocks/MapMock.hpp"
+#include "mocks/MapMock.hpp"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
@@ -8,9 +8,9 @@ using ::testing::_;
 using ::testing::Return;
 using ::testing::Exactly;
 
-using Action = command::Action;
-using Direction = lib::localisation::Direction;
-using Position = lib::localisation::Position;
+using Action = cmd::Action;
+using Direction = localisation::Direction;
+using Position = localisation::Position;
 
 struct ToyRobotShould : ::testing::Test
 {
@@ -30,7 +30,7 @@ struct ToyRobotShould : ::testing::Test
     std::unique_ptr<app::ToyRobot> sut;
 };
 
-constexpr lib::localisation::Position INVALID_POSITION;
+constexpr localisation::Position INVALID_POSITION;
 
 TEST_F(ToyRobotShould, HaveInvalidInitPosition)
 {

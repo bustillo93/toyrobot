@@ -7,8 +7,8 @@ RUN apt-get update && \
 
 RUN apt-get install -y vim cmake gdb libgtest-dev libgmock-dev catch2
 
-COPY . /src/toyrobot_ps/
+COPY . /src/toyrobot/
 
-WORKDIR /src/toyrobot_ps/
+WORKDIR /src/toyrobot/
 
 CMD [ "bash" ]

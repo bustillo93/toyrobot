@@ -1,8 +1,8 @@
 #include "Application.hpp"
 
-#include "lib/Command.hpp"
-#include "lib/parser/CommandParser.hpp"
-#include "map/IMap.hpp"
+#include "Command.hpp"
+#include "CommandParser.hpp"
+#include "IMap.hpp"
 #include "ToyRobot.hpp"
 
 #include <iostream>
@@ -11,16 +11,15 @@ void Application::Run(std::list<std::string>& cmds, Output strOut)
 {
     auto table{CreateConcreteMap(5, 5)};
     app::ToyRobot toyRobot{table};
-    utils::CommandParser parser;
+    cmd::CommandParser parser;
 
-    auto callback = [&toyRobot, &strOut](const command::Action& cmd) -> bool
+    auto callback = [&toyRobot, &strOut](const cmd::Action& cmd)
     {
         toyRobot.Act(cmd);
         if (strOut)
         {
             strOut(toyRobot.GetPosition().ToString());
         }
-        return true;
     };
 
     for (const auto& cmd : cmds)

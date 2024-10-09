@@ -1,6 +1,6 @@
 #pragma once
 
-#include "map/IMap.hpp"
+#include "app/IMap.hpp"
 #include <gmock/gmock.h>
 
 namespace map::mocks

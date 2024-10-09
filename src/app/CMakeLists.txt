@@ -9,6 +9,9 @@ set(MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 
 set(MODULE_SRCS
     ${MODULE_PATH}/Application.cpp
+    ${MODULE_PATH}/CommandParser.cpp
+    ${MODULE_PATH}/ConcreteMap.cpp
+    ${MODULE_PATH}/Position.cpp
     ${MODULE_PATH}/ToyRobot.cpp
 )
 
@@ -17,9 +20,6 @@ add_library(${PROJECT_NAME} STATIC ${MODULE_SRCS})
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${MODULE_PATH}
     ${APP_SOURCE_DIRECTORY}
-    ${APP_SOURCE_DIRECTORY}/lib
-    ${APP_SOURCE_DIRECTORY}/lib/parser
-    ${APP_SOURCE_DIRECTORY}/map
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE

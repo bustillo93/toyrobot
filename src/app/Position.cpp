@@ -7,28 +7,28 @@
 
 namespace
 {
-    using Sides = std::pair<lib::localisation::Direction, lib::localisation::Direction>; // pair<left, right>
-    Sides GetSides(lib::localisation::Direction dir)
+using Sides = std::pair<localisation::Direction, localisation::Direction>; // pair<left, right>
+Sides GetSides(localisation::Direction dir)
+{
+    using Navigation = std::unordered_map<localisation::Direction, Sides>;
+    static const Navigation navigation =
     {
-        using Navigation = std::unordered_map<lib::localisation::Direction, Sides>;
-        static const Navigation navigation =
-        {
-            {lib::localisation::Direction::NORTH, {lib::localisation::Direction::WEST, lib::localisation::Direction::EAST}},
-            {lib::localisation::Direction::EAST, {lib::localisation::Direction::NORTH, lib::localisation::Direction::SOUTH}},
-            {lib::localisation::Direction::SOUTH, {lib::localisation::Direction::EAST, lib::localisation::Direction::WEST}},
-            {lib::localisation::Direction::WEST, {lib::localisation::Direction::SOUTH, lib::localisation::Direction::NORTH}}
-        };
+        {localisation::Direction::NORTH, {localisation::Direction::WEST, localisation::Direction::EAST}},
+        {localisation::Direction::EAST, {localisation::Direction::NORTH, localisation::Direction::SOUTH}},
+        {localisation::Direction::SOUTH, {localisation::Direction::EAST, localisation::Direction::WEST}},
+        {localisation::Direction::WEST, {localisation::Direction::SOUTH, localisation::Direction::NORTH}}
+    };
 
-        if (auto itr = navigation.find(dir); itr != navigation.end())
-        {
-            return itr->second;
-        }
-
-        return std::make_pair(lib::localisation::Direction::INVALID, lib::localisation::Direction::INVALID);
+    if (auto itr = navigation.find(dir); itr != navigation.end())
+    {
+        return itr->second;
     }
+
+    return std::make_pair(localisation::Direction::INVALID, localisation::Direction::INVALID);
+}
 } // anonymous namespace
 
-namespace lib::localisation
+namespace localisation
 {
 
 Position::Position(const int x, const int y, const Direction direction)
@@ -149,15 +149,15 @@ const std::string Position::ToString(const Direction& dir)
     }
     return "";
 }
-} // namespace lib::localisation
+} // namespace localisation
 
-std::ostream& operator<<(std::ostream& os, const lib::localisation::Direction& dir)
+std::ostream& operator<<(std::ostream& os, const localisation::Direction& dir)
 {
-    os << lib::localisation::Position::ToString(dir);
+    os << localisation::Position::ToString(dir);
     return os;
 }
 
-std::ostream& operator<<(std::ostream& os, const lib::localisation::Position& pos)
+std::ostream& operator<<(std::ostream& os, const localisation::Position& pos)
 {
     os << pos.ToString();
     return os;

@@ -32,9 +32,9 @@
 *.app
 
 # cmake
-# build/
+build/
 CMakeFiles/
 CMakeCache.txt
 
 # vs-code
-.vscode/
+# .vscode/

@@ -1,6 +1,6 @@
 #include "CommandParser.hpp"
 
-#include "lib/Position.hpp"
+#include "Position.hpp"
 
 #include <algorithm>
 #include <cctype>
@@ -10,20 +10,20 @@
 
 namespace
 {
-    using Position = lib::localisation::Position;
-    using Direction = lib::localisation::Direction;
-    static const std::unordered_map<std::string, Direction> DIRECTIONLOOKUP =
-    {
-        {Position::ToString(Direction::NORTH), Direction::NORTH},
-        {Position::ToString(Direction::SOUTH), Direction::SOUTH},
-        {Position::ToString(Direction::EAST), Direction::EAST},
-        {Position::ToString(Direction::WEST), Direction::WEST}
-    };
+using Position = localisation::Position;
+using Direction = localisation::Direction;
+static const std::unordered_map<std::string, Direction> DIRECTIONLOOKUP =
+{
+    {Position::ToString(Direction::NORTH), Direction::NORTH},
+    {Position::ToString(Direction::SOUTH), Direction::SOUTH},
+    {Position::ToString(Direction::EAST), Direction::EAST},
+    {Position::ToString(Direction::WEST), Direction::WEST}
+};
 }
 
-namespace utils
+namespace cmd
 {
-std::optional<command::Action> CommandParser::Parse(const std::string& str)
+std::optional<Action> CommandParser::Parse(const std::string& str)
 {
     /// Change "," to space
     std::string inputStr{str};
@@ -58,34 +58,34 @@ std::optional<command::Action> CommandParser::Parse(const std::string& str)
     ss >> dirStr;
 
     /// convert to Action
-    std::optional<command::Action> cmd;
+    std::optional<Action> cmd;
     if (actionStr == "PLACE")
     {
         ToUpperCase(dirStr);
         if (auto itr = DIRECTIONLOOKUP.find(dirStr);
             itr != DIRECTIONLOOKUP.end())
         {
-            cmd = {command::Action::Place{lib::localisation::Position(x, y, itr->second)}};
+            cmd = {Action::Place{localisation::Position(x, y, itr->second)}};
         }
     }
     else if (actionStr == "MOVE")
     {
-        cmd = {command::Action::Move{}};
+        cmd = {Action::Move{}};
     }
     else if (actionStr == "RIGHT")
     {
-        cmd = {command::Action::Right{}};
+        cmd = {Action::Right{}};
     }
     else if (actionStr == "LEFT")
     {
-        cmd = {command::Action::Left{}};
+        cmd = {Action::Left{}};
     }
     else if (actionStr == "REPORT")
     {
-        cmd = {command::Action::Report{}};
+        cmd = {Action::Report{}};
     }
 
     return cmd;
 }
 
-} // namespace utils
+} // namespace cmd

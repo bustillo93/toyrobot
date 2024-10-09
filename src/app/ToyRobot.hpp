@@ -1,21 +1,22 @@
 #pragma once
 
-#include "lib/Command.hpp"
-#include "lib/Position.hpp"
-#include "map/IMap.hpp"
+#include "Command.hpp"
+#include "Position.hpp"
+#include "IMap.hpp"
 
 namespace app
 {
 class ToyRobot
 {
 public:
-    using Action = command::Action;
-    using Position = lib::localisation::Position;
+    using Action = cmd::Action;
+    using Point = map::IMap::Point;
+    using Position = localisation::Position;
 
     explicit ToyRobot(const map::IMapPtr& map);
     ~ToyRobot();
 
-    void Act(const command::Action&);
+    void Act(const Action&);
     void Reset();
     const Position GetPosition() const
     {
@@ -23,7 +24,7 @@ public:
     }
 
 private:
-    void Place(const command::Action::Place& placeCmd);
+    void Place(const Action::Place& placeCmd);
     void Move();
     void Right();
     void Left();
