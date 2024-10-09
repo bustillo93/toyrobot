@@ -11,55 +11,46 @@ however further valid movement commands must still be allowed.
 
 ### Requirements :
 - gcc 7.1 (C++17)
-- CMake 3.20 or newer
-- GTest/GMock for unit testing
-
-### Using Docker image :
-- locally installed Docker engine
-- build the docker image using the provided bash script
-```
-{project-dir}# ./scripts/build_docker.sh
-```
-- and run a container
-```
-{project-dir}# ./scripts/run_docker.sh
-```
+- CMake 3.20 or newer added to environment path
+- Visual Studio Code with CMake Tools extensions
 
 ## Compiling the src
-- From project-dir as current directory,
+
+#### Using Visual Studio Code
+- Open the folder in Visual Studio Code
+- CMake should start configuring the project but if not, select Terminal -> Configure Tasks.. and select C/C++: g++.exe active file which will add a proper entry in .vscode/tasks.json
+- After succesful cmake configuration, press F7 to build
+- Executables should be found in build folder
+
+#### Using Docker
 ```
--- go to build folder --
-{project-dir}# cd build
+-- build docker image --
+{project-dir}# docker build -t  toyrobot:001 .
+
+-- run a docker container --
+{project-dir}# docker run  --rm -it toyrobot:001
+
+-- create and go to build folder --
+# mkdir build
+# cd build
 
 -- configure and build CMake --
-{project-dir}/build# cmake ..
-{project-dir}/build# make
+/build# cmake ..
+/build# make
+```
 
+### Running the exe
+```
 -- run unit tests --
-{project-dir}/build# ./tests/unit-tests/unit_tests
+/build# ./tests/unit-tests/unit_tests
 
 -- run integration tests --
-{project-dir}/build# ./tests/integration-tests/integration-tests
-```
-- Alternatively, you can use the scripts provided
-```
--- configure and build CMake --
-{project-dir}# ./scripts/build_src.sh
-
--- run unit tests --
-{project-dir}# ./scripts/run_unit_tests.sh
-
--- run integration tests --
-{project-dir}# ./scripts/run_integration_tests.sh
+/build# ./tests/integration-tests/integration-tests
 ```
 
 ### Running the binary with the input file
 - Input file can be modified from `tests/input-data/input.txt`
 ```
-{project-dir}/build# ./toy_robot
-```
-- or using the script
-```
-{project-dir}# ./scripts/run_toy_robot.sh
+/build# ./toy_robot ../tests/input-data/input.txt
 ```
 

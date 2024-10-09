@@ -5,7 +5,7 @@ RUN apt-get update && \
     apt-get install -y build-essential && \
     apt-get install -y
 
-RUN apt-get install -y vim cmake gdb libgtest-dev libgmock-dev catch2
+RUN apt-get install -y vim cmake gdb libgtest-dev libgmock-dev catch2 git
 
 COPY . /src/toyrobot/
 
