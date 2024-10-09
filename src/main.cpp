@@ -7,7 +7,7 @@
 
 int main(int argc,  char *argv[])
 {
-    std::cout << "This is a Toy Robot simulation!\n";
+    std::cout << "This is a Toy Robot!\n";
 
     std::string fileName {"../tests/input-data/input.txt"};
     if (argc > 1)
